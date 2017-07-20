@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log</title>
+  <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+  <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body style="opacity: 1; margin-left: 0px;" >
+<%= render 'layouts/header' %>
+<div id="cl-wrapper" class="fixed-menu">
+  <%= render 'layouts/left' %>
+  <div class="" id="pcont" data-pjax-container></div>
+  <%= yield %>
+</div>
+</body>
+</html>
