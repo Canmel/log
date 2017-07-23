@@ -1,0 +1,26 @@
+<%= bootstrap_form_for(@menu, layout: :horizontal, :html => { class: '' }) do |f| %>
+    <%= f.select :resource_type, [['一级菜单',1],['二级菜单',2]], selected: 2 , label: "菜单等级"  %>
+    <div id="parant">
+      <%= f.collection_select(:parent_id, parents_menus, :id, :name, label: "上级") %>
+    </div>
+    <%= f.text_field :name, label: "名称" %>
+    <%= f.text_field :source, label: "地址" %>
+    <%= f.text_field :desc, label: "备注" %>
+    <div class="form-group text-center">
+      <%= link_to '取消', menus_path, :class => 'btn btn-default' %>
+      <%= f.submit "保存", class: "btn meedesidy_btn_save" %>
+    </div>
+<% end %>
+<script>
+  $(function () {
+    $("#menu_resource_type").change(function(){
+      if($(this).val() == "1"){
+        $('#parant').hide();
+        $("#menu_source").attr("disabled",true);
+      }else{
+        $('#parant').show();
+        $("#menu_source").attr("disabled",false);
+      }
+    })
+  })
+</script>
