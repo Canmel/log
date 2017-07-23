@@ -13,8 +13,9 @@
 <%= render 'layouts/header' %>
 <div id="cl-wrapper" class="fixed-menu">
   <%= render 'layouts/left' %>
-  <div class="" id="pcont" data-pjax-container></div>
-  <%= yield %>
+  <div class="" id="pcont" data-pjax-container>
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>
