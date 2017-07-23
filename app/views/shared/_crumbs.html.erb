@@ -1,8 +1,12 @@
 <div class="page-head">
   <h2><%= title || name  %></h2>
   <ol class="breadcrumb">
-    <li><a href="/">主页</a></li>
-    <li><a href="#"><%= menu %></a></li>
-    <li class="active"><%= title %></li>
+    <li><%= link_to "主页", root_path %></li>
+    <% if menu %>
+      <li><%= menu %></li>
+    <% end %>
+    <% if title %>
+      <li class="active"><%= title %></li>
+    <% end %>
   </ol>
 </div>

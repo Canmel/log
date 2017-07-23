@@ -6,6 +6,7 @@ class Menu < ApplicationRecord
   delegate :name, to: :parent, prefix: true, allow_nil: true
 
   enum resource_type: { one_level: '1', two_level: '2' }
+  enum resource_type: { one: 1, two: 2 }
   enum status: { active: 1, archived: 0 }
 
 
@@ -15,15 +16,16 @@ class Menu < ApplicationRecord
       roles = user.roles
       menus = []
       roles.each do |role|
-        if Menu.resource_types[level] == Menu.resource_types[:one_level]
-          role_menus = role.menus.where(resource_type: Menu.resource_types[level], status: Menu.active)
+        if level == Menu.resource_types[:one]
+          role_menus = role.menus.where(resource_type: level, status: Menu.active)
         else
-          role_menus = role.menus.where(resource_type: Menu.resource_types[level], parent_id: parent_id, status: Menu.active)
+          role_menus = role.menus.where(resource_type: level, parent_id: parent_id, status: Menu.active)
         end
         role_menus.each do |menu|
           menus << menu
         end
       end
+      p menus
       menus.uniq
     end
   end

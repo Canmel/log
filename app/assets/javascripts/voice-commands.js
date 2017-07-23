@@ -152,7 +152,7 @@ if(('webkitSpeechRecognition' in window)){
       function titleCase(str){return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});}
       var name = titleCase(r);
       $.gritter.add({
-      title: "Clean Zone",
+      title: "Log Inspection",
       text: 'Welcome home <strong>' + name + '</strong>!' ,
       image: 'images/user-icon.png',
       class_name: 'clean',
@@ -170,7 +170,7 @@ if(('webkitSpeechRecognition' in window)){
   var thank_actions = {
     action: function(){
       $.gritter.add({
-      title: "Clean Zone",
+      title: "Log Inspection",
       text: 'Your welcome!',
       image: 'images/user-icon.png',
       class_name: 'clean',

@@ -10,4 +10,9 @@ module ApplicationHelper
   def load_menus(level, parent_id)
     Menu.find_by_user current_user.id, level, parent_id if current_user
   end
+
+
+  def is_current_url?(source)
+    request.fullpath == source
+  end
 end
