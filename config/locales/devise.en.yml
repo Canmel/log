@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-en:
+zh:
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -60,7 +60,7 @@ en:
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"
-  enum:
+  enums:
     user:
       status:
         active: '正常'
@@ -69,6 +69,9 @@ en:
       status:
         active: '正常'
         archived: '无效'
+      resource_type:
+        one: "一级菜单"
+        two: "二级菜单"
     role:
       status:
         active: '正常'

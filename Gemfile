@@ -32,6 +32,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'devise'
 gem 'pjax_rails'
+gem 'rails-i18n'
 
 gem 'bootstrap_form'
 gem 'ransack'
