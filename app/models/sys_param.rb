@@ -1,0 +1,2 @@
+class SysParam < ApplicationRecord
+end

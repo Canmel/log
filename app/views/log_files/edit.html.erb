@@ -1,0 +1,17 @@
+<%= render 'shared/crumbs', menu: '日志管理', title: "日志获取", name: '查看异常' %>
+
+
+<div class="cl-mcont">
+  <ul class="cbp_tmtimeline">
+    <% @error_logs.each do |log| %>
+    <li>
+      <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
+      <div class="cbp_tmicon cbp_tmicon-phone"></div>
+      <div class="cbp_tmlabel">
+        <h2>Epicuro ratio</h2>
+        <p style="word-break: break-all;"><%= log %></p>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>

@@ -39,6 +39,8 @@ gem 'ransack'
 gem 'enum_help'
 gem 'ransack'
 gem 'kaminari'
+gem 'redis-rails'
+gem 'redis-objects'
 
 
 group :development, :test do

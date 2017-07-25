@@ -11,12 +11,12 @@
           </div>
         </div>
         <ul class="cl-vnavigation">
-          <% load_menus(Menu.resource_types[:one], nil).each do |menu| %>
+          <% load_menus(Menu.resource_types[:one_level], nil).each do |menu| %>
               <li>
                 <a><i class="fa fa-smile-o"></i><span><%= menu.name %></span></a>
               </li>
               <ul class="sub-menu" style="display: none;">
-                <% load_menus(Menu.resource_types[:two],menu.id).each do |menu_link| %>
+                <% load_menus(Menu.resource_types[:two_level],menu.id).each do |menu_link| %>
                     <% if is_current_url?(menu_link.source) %>
                       <li class="active"><a href="<%= menu_link.source %>"><%= menu_link.name %></a></li>
                     <% else %>

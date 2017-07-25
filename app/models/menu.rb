@@ -5,8 +5,8 @@ class Menu < ApplicationRecord
 
   delegate :name, to: :parent, prefix: true, allow_nil: true
 
-  enum resource_type: { one_level: '1', two_level: '2' }
   enum resource_type: { one: 1, two: 2 }
+  enum resource_type: { one_level: '1', two_level: '2' }
   enum status: { active: 1, archived: 0 }
 
 
