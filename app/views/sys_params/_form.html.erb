@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@sys_param, layout: :horizontal, :html => { class: 'pjax-form col-sm-10' }) do |f| %>
+    <%= f.text_field :name, label: "参数名称" %>
+    <%= f.text_field :code, label: '参数代码' %>
+    <%= f.text_field :val, label: '参数值' %>
+    <%= f.text_field :desc, label: '参数描述' %>
+    <div class="form-group text-center">
+      <%= link_to '取消', sys_params_path, :class => 'btn btn-primary' %>
+      <%= f.submit "保存", class: "btn btn-default" %>
+    </div>
+<% end %>

@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :users
   resources :roles
   resources :menus
-  resources :logs
+  resources :log_files
+  resources :sys_params
 end

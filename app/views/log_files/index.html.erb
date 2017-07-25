@@ -1,0 +1,48 @@
+<%= render 'shared/crumbs', menu: '日志管理' ,title: "日志获取" %>
+
+
+<div class="cl-mcont">
+  <div class="head">
+    <h3>查询</h3><hr/>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
+        <div class="form-group col-md-4">
+          <%= f.label "名称：", class: "control-label col-md-3" %>
+          <div class="col-md-9">
+            <%= f.search_field :name_cont, class: 'form-control' %>
+          </div>
+        </div>
+        <%= link_to '新增', :new_role, class: "btn btn-info"%>
+        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#search_model">查询</button>
+        <%= link_to '初始化', :new_log_file, class: "btn btn-warning btn-rad" %>
+    <% end %>
+  </div>
+</div>
+<div class="cl-mcont">
+  <div class="content">
+    <div class="table-responsive">
+      <table class="table no-border hover">
+        <thead class="no-border">
+        <tr>
+          <th><strong>文件名称</strong></th>
+          <th><strong>地址</strong></th>
+          <th><strong>日志日期</strong></th>
+          <th style="width:15%;" class="text-center"><strong>操作</strong></th>
+        </tr>
+        </thead>
+        <tbody class="no-border-y">
+        <% @log_files.each_with_index do |f, index|%>
+            <tr>
+              <td><%= f.name %></td>
+              <td><%= f.address %></td>
+              <td><%= f.log_date %></td>
+              <td class="text-center">
+                <%= link_to content_tag(:i, '', class: "fa fa-flag"), edit_log_file_path(f), class: "label label-default" %>
+                <%= link_to content_tag(:i, '', class: "fa fa-times"), log_file_path(f), class: "label label-danger", method: :delete, data: { confirm: "是否删除#{f.name}?" } %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

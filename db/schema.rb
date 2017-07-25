@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721091412) do
+ActiveRecord::Schema.define(version: 20170725055959) do
+
+  create_table "log_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "log_date"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "menus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -39,6 +47,15 @@ ActiveRecord::Schema.define(version: 20170721091412) do
     t.integer "menu_id"
     t.index ["menu_id"], name: "index_roles_menus_on_menu_id", using: :btree
     t.index ["role_id"], name: "index_roles_menus_on_role_id", using: :btree
+  end
+
+  create_table "sys_params", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                    comment: "名称"
+    t.string   "code"
+    t.string   "val",                     comment: "值"
+    t.string   "desc",                    comment: "描述"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

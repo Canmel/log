@@ -1,0 +1,47 @@
+<%= render 'shared/crumbs', menu: '系统管理' ,title: "系统参数" %>
+
+
+<div class="cl-mcont">
+  <div class="head">
+    <h3>查询</h3><hr/>
+    <%= search_form_for @q, :html => {:class => 'pjax-form'} do |f| %>
+        <div class="form-group col-md-4">
+          <%= f.label "邮箱：", class: "control-label col-md-3" %>
+          <div class="col-md-9">
+            <%= f.search_field :name_cont, class: 'form-control' %>
+          </div>
+        </div>
+        <%= link_to '新增', :new_sys_param, class: "btn btn-info"%>
+        <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#search_model">查询</button>
+    <% end %>
+  </div>
+</div>
+<div class="cl-mcont">
+  <div class="content">
+    <div class="table-responsive">
+      <table class="table no-border hover">
+        <thead class="no-border">
+        <tr>
+          <th><strong>名称</strong></th>
+          <th><strong>值</strong></th>
+          <th><strong>描述</strong></th>
+          <th class="text-center"><strong>操作</strong></th>
+        </tr>
+        </thead>
+        <tbody class="no-border-y">
+        <% @sys_params.each_with_index do |p, index| %>
+            <tr>
+              <td><%= p.name %></td>
+              <td><%= p.val %></td>
+              <td><%= p.desc %></td>
+              <td class="text-center">
+                <%= link_to content_tag(:i, '', class: 'fa fa-pencil'), edit_sys_param_path(p), class: 'label label-default' %>
+                <%= link_to content_tag(:i, '', class: "fa fa-times"), sys_param_path(p), class: "label label-danger", method: :delete, data: { confirm: "是否删除#{p.name}?" } %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
