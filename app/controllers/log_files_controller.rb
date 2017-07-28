@@ -4,14 +4,15 @@ class LogFilesController < ApplicationController
   def index
     address = SysParam.find_by_code(:log_address).val
     projects = SysParam.find_by_code(:project).val.split(',')
+    p projects
     projects.each do |item|
       path = File.join(address, item)
       return redirect_to :log_files unless File::directory?(path)
-      Dir.entries(path).each do|f|
+      Dir.entries(path).each do |f|
         file_name = File.join(path, f)
         break if File::directory? file_name
         log_date = f.split('-')[1]
-        LogFile.new({name: f, log_date: log_date, address: path}).save if LogFile.find_by_name(f).nil?
+        LogFile.new({name: f, log_date: log_date, address: path, project_name: item}).save if LogFile.find_by(name: f, project_name: item).blank?
       end
     end
 
@@ -26,7 +27,7 @@ class LogFilesController < ApplicationController
     projects.each do |item|
       path = File.join(address, item)
       return redirect_to :log_files unless File::directory?(path)
-      Dir.entries(path).each do|f|
+      Dir.entries(path).each do |f|
         file_name = File.join(path, f)
         break if File::directory? file_name
         p read_file file_name if File.file? file_name
@@ -36,13 +37,16 @@ class LogFilesController < ApplicationController
   end
 
   def edit
-    @error_logs = read_file @log_file.file_name
+    if @log_file.log_errors.blank?
+      @error_logs = read_file(@log_file)
+    end
+    @error_logs = @log_file.log_errors
   end
-
 
   private
 
-  def read_file file_name
+  def read_file log_file
+    file_name = log_file.file_name
     @list = Redis::List.new('list_name', :maxlength => 25)
     error_lines = []
     error_line_num = 0
@@ -54,6 +58,7 @@ class LogFilesController < ApplicationController
         @list.each do |el|
           temp_lines << el
         end
+        log_error = LogError.build_from_error temp_lines, log_file.id if log_file.log_errors.blank?
         error_lines << temp_lines
       end
       error_line_num -= 1 if error_line_num >= 0
@@ -81,6 +86,9 @@ class LogFilesController < ApplicationController
   end
 
   def error_line?(line)
-    (line =~ / Server Error/).present? || (line =~ / Server Error/).present?
+    (line =~ / Server Error/).present? ||
+        (line =~ /ActionView::Template::Error/).present? ||
+        (line =~ /Mysql2::Error/).present? ||
+        (line =~ /undefined method/)
   end
 end

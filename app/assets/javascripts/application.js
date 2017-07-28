@@ -20,15 +20,20 @@ $(document).on('ready page:load',function(){
     $(document).on('submit', '.pjax-form', function(event) {
         $.pjax.submit(event, '[data-pjax-container]',{timeout: 50000});
     });
-    
+
+
+    $(document).on('pjax:start', function () {
+        loading();
+    })
+
     $(document).on('pjax:end', function () {
-        // load_menu_after_pjax();
+        removeLoading();
     })
 });
 
 function init_menus() {
     $(".cl-vnavigation > li").click(function () {
-        if(!$(this).css('display')){
+        if($(this).hasClass('active')){
             $(this).slideUpMenu();
         }else{
             $(this).slideDownMenu();
@@ -59,4 +64,22 @@ function load_menu_after_pjax() {
     $(".cl-vnavigation > ul > li").each(function (obj) {
         $(this).removeClass("active");
     })
+}
+
+function loading() {
+    $('body').loading({
+        loadingWidth:240,
+        title:'请稍等!',
+        name:'loading',
+        discription:'第一次打开或许会花点时间',
+        direction:'column',
+        type:'origin',
+        originBg:'#71EA71',
+        originDivWidth:40,
+        originDivHeight:40,
+        originWidth:6,
+        originHeight:6,
+        smallLoading:false,
+        loadingMaskBg:'rgba(0,0,0,0.2)'
+    });
 }
