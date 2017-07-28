@@ -23,6 +23,7 @@
       <table class="table no-border hover">
         <thead class="no-border">
         <tr>
+          <th><strong>项目名称</strong></th>
           <th><strong>文件名称</strong></th>
           <th><strong>地址</strong></th>
           <th><strong>日志日期</strong></th>
@@ -32,6 +33,7 @@
         <tbody class="no-border-y">
         <% @log_files.each_with_index do |f, index|%>
             <tr>
+              <td><%= f.project_name %></td>
               <td><%= f.name %></td>
               <td><%= f.address %></td>
               <td><%= f.log_date %></td>

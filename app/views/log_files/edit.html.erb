@@ -5,13 +5,24 @@
   <ul class="cbp_tmtimeline">
     <% @error_logs.each do |log| %>
     <li>
-      <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
+      <time class="cbp_tmtime" datetime="2013-04-10 18:30">
+        <span><%= log.error_date %></span> <span><%= log.error_time[0,8] %></span></time>
       <div class="cbp_tmicon cbp_tmicon-phone"></div>
       <div class="cbp_tmlabel">
-        <h2>Epicuro ratio</h2>
-        <p style="word-break: break-all;"><%= log %></p>
+        <h2><%= log.name %></h2>
+        <pre><%= log.content %></pre>
       </div>
     </li>
     <% end %>
   </ul>
 </div>
+<style>
+  pre{
+    white-space:pre-wrap;
+    white-space:-moz-pre-wrap;
+    white-space:-pre-wrap;
+    white-space:-o-pre-wrap;
+    word-wrap:break-word;
+    background-color: #4E9DFF;
+  }
+</style>

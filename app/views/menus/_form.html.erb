@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@menu, layout: :horizontal, :html => { class: '' }) do |f| %>
+<%= bootstrap_form_for(@menu, layout: :horizontal, :html => { class: 'pjax-form col-sm-10' }) do |f| %>
     <%= f.select :resource_type, [['一级菜单',1],['二级菜单',2]], selected: 2 , label: "菜单等级"  %>
     <div id="parant">
       <%= f.collection_select(:parent_id, parents_menus, :id, :name, label: "上级") %>
